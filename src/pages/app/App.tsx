@@ -1,26 +1,13 @@
 import React from 'react';
 import '../../assets/css/App.css';
-import config from '../../app-config.json';
-import { APIService } from '../../services/APIService';
-import { Enpoints } from '../../data/constants';
+import { MovieDBService } from '../../services/MovieDBService';
 
 class App extends React.Component {
 
   componentDidMount() {
-    const api = new APIService(config.APIKey)
-    .setHeaders([
-      {
-        key: 'Content-Type',
-        value: 'application/json'
-      }
-    ]);
+    const movieDBService = new MovieDBService();
 
-    fetch(
-      config.MovieDBBaseURL + Enpoints.popular_movies + '?language=fr-FR&page=1&region=FR',
-      api.request({})
-    )
-    .then(res => res.json())
-    .then(
+    movieDBService.getPopularMovies().then(
       (result) => {
         console.log(result);
       },
