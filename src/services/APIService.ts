@@ -12,23 +12,23 @@ export class APIService {
     }
 
     public setHeaders(headers: KeyValue<string, string>[]): APIService {
-        
+
         // format KeyValue types to be called in fetch 
         headers.forEach(h => {
-            if (h.hasOwnProperty('key') && h.hasOwnProperty('value')) {
-                this.headers.push([h.key, h.value]);
-            }
+            this.headers.push([h.key, h.value]);
         });
 
         return this;
     }
 
-    public setParams(params: KeyValue<string, string>[]) : APIService {
-        
+    public setParams(params: KeyValue<string, string>[]): APIService {
+
         if (params) {
             this.queryParams = '?';
         }
-        this.queryParams += params.map((item) => {return [item.key, item.value].join('=')}).join('&');
+        this.queryParams += params.map((item) => {
+            return [item.key, item.value].join('=');
+        }).join('&');
         return this;
     }
 
@@ -41,7 +41,7 @@ export class APIService {
     }
 
     public setMethod(method: APIMethod): APIService {
-        
+
         this.method = method;
         return this;
     }

@@ -2,8 +2,8 @@ import { APIService } from "./APIService";
 import config from '../app-config.json'
 
 enum Enpoints {
-    POPULAR_MOVIES = '/movie/popular',
-    UPCOMING_MOVIES = '/movie/upcoming'
+    POPULAR_MOVIES = 'movie/popular',
+    UPCOMING_MOVIES = 'movie/upcoming'
 }
 export class MovieDBService {
 
@@ -14,7 +14,7 @@ export class MovieDBService {
         this.api = new APIService(config.APIKey);
     }
 
-    public async getPopularMovies() {
+    public async getPopularMovies(language: string, page: string, region: string) {
 
         let result = await this.api.setHeaders([
             {
@@ -25,15 +25,15 @@ export class MovieDBService {
             .setParams([
                 {
                     key: 'language',
-                    value: 'fr-FR'
+                    value: language
                 },
                 {
                     key: 'page',
-                    value: '1'
+                    value: page
                 },
                 {
                     key: 'region',
-                    value: 'FR'
+                    value: region
                 }
             ]).send(config.MovieDBBaseURL + Enpoints.POPULAR_MOVIES);
 
