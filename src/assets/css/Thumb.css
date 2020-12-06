@@ -1,0 +1,23 @@
+.thumb {
+    width: 300px;
+    height: 600px;
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+    background-color: darkblue;
+}
+
+.thumb .poster {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.thumb .poster_container {
+    width: 280px;
+    min-height: 120px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 0 auto;
+}

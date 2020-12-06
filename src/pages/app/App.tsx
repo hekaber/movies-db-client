@@ -8,7 +8,8 @@ interface State {
   items: any[];
   error: string;
 }
-class App extends React.Component<{}, State> {
+
+class App extends React.Component<any, State> {
 
   state: Readonly<State> = {
     isLoaded: false,
@@ -19,7 +20,7 @@ class App extends React.Component<{}, State> {
   componentDidMount() {
     new MovieDBService().getPopularMovies('fr-FR', '1', 'FR').then(
       (result) => {
-        if (result.results) {
+        if (result.success) {
           this.setState({
             isLoaded: true,
             items: result.results
@@ -28,7 +29,6 @@ class App extends React.Component<{}, State> {
         else {
           this.setState({
             isLoaded: false,
-            error: result.status_message
           });
         }
       }
@@ -44,17 +44,22 @@ class App extends React.Component<{}, State> {
       return (<div>Loading...</div>)
     }
     else {
-      const movies = this.state.items;
 
+      const movies = this.state.items;
       const thumbs = movies.map((movie, index) => {
+
         return (
-          <Thumb 
+          <Thumb
             key={index}
             movie={movie}
           />
         );
       });
-      return (<div>{thumbs}</div>)
+      return (
+        <div className="thumbs_container">
+          {thumbs}
+        </div>
+      )
     }
   }
 

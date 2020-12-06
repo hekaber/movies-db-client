@@ -46,7 +46,7 @@ export class APIService {
         return this;
     }
 
-    public async send<T>(url: string, body?: T) {
+    public async send<T>(url: string, body?: T): Promise<any> {
 
         let request: RequestInit = {
             headers: this.headers,
@@ -56,10 +56,30 @@ export class APIService {
         if (body && this.hasBody()) {
             request.body = JSON.stringify(body);
         }
-        
-        url = this.queryParams ? url + this.queryParams : url;
-        let response = await fetch(url, request).then((res) => res.json());
 
+        url = this.queryParams ? url + this.queryParams : url;
+        let response = await fetch(url, request)
+            .then(
+                (res) => {
+                    return res.json();
+                }
+            )
+            .catch(
+                (error) => { 
+                    return {
+                        status_code: -1,
+                        status_message: error.message,
+                        success: false,
+                        results: []
+                    }; 
+                }
+            );
+        
+        // When success json response does not provide success attribute
+        // so we add it
+        if (!response.hasOwnProperty('success')) {
+            response.success = true;
+        }
         return response;
     }
 

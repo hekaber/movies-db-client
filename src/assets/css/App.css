@@ -12,3 +12,8 @@
     font-size: 28px;
     color: white;
 }
+
+.thumbs_container {
+    display: flex;
+    flex-direction: row;
+}

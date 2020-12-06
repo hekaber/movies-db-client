@@ -5,14 +5,10 @@ export type KeyValue<T, U> = {
 
 export type APIMethod = "GET" | "POST" | "PUT";
 
-export type APIResult = "success" | "failure";
-
-export type APIError = {
-    ErrorCode: string,
-    Description: string
-}
-
-export type APIResponse<T> = {
-    Result: APIResult,
-    Response: T | APIError
+export type ListResponse<T> = {
+    success: boolean,
+    page: number,
+    results: T[],
+    total_pages: number,
+    total_results: number
 }
