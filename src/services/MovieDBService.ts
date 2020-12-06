@@ -14,17 +14,32 @@ export class MovieDBService {
 
     constructor() {
 
-        this.api = new APIService(config.APIKey);
-    }
-
-    public async getPopularMovies(language: string, page: string, region: string): Promise<ListResponse<IMovie>> {
-
-        let result = await this.api.setHeaders([
+        this.api = new APIService().setHeaders([
+            {
+                key: 'Authorization',
+                value: 'Bearer ' + config.APIKey
+            },
             {
                 key: 'Content-Type',
                 value: 'application/json'
             }
-        ])
+        ]);
+    }
+
+    public async getPopularMovies(language: string, page: string, region: string): Promise<ListResponse<IMovie>> {
+
+        return this.getMovies(Enpoints.POPULAR_MOVIES, language, page, region);
+    }
+
+    public async getUpcomingMovies(language: string, page: string, region: string): Promise<ListResponse<IMovie>> {
+
+        return this.getMovies(Enpoints.UPCOMING_MOVIES, language, page, region);
+    }
+
+    private async getMovies(endpoint: string, language: string, page: string, region: string): Promise<ListResponse<IMovie>> {
+        
+        this.api.resetParams();
+        let result = await this.api
             .setParams([
                 {
                     key: 'language',
@@ -38,20 +53,23 @@ export class MovieDBService {
                     key: 'region',
                     value: region
                 }
-            ]).send(config.MovieDBBaseURL + Enpoints.POPULAR_MOVIES);
+            ]).send(config.MovieDBBaseURL + endpoint);
 
         let popularMoviesList: ListResponse<IMovie> = result;
 
         if (result.success) {
 
             let moviesList: IMovie[] = popularMoviesList.results;
-            popularMoviesList.results = moviesList.map((movie) => { return this.formatResult(movie); })
+            popularMoviesList.results = moviesList.map((movie) => { return new MovieResultFormatter().format(movie); })
         }
 
         return popularMoviesList;
     }
+}
 
-    private formatResult(item: any) : IMovie {
+class MovieResultFormatter {
+
+    public format(item: any): IMovie {
 
         return {
             title: item.title,
@@ -59,7 +77,6 @@ export class MovieDBService {
             original_language: item.original_language,
             overview: item.overview,
             poster_path: config.MovieDBStaticImageURL + '/w500' + item.poster_path
-          };
+        };
     }
-
 }

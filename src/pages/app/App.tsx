@@ -52,6 +52,7 @@ class App extends React.Component<any, State> {
           <Thumb
             key={index}
             movie={movie}
+            delayTime={index * 500}
           />
         );
       });

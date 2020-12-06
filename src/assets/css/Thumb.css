@@ -6,6 +6,13 @@
     border: 1px solid #FFFFFF;
     border-radius: 10px;
     background-color: darkblue;
+    transition: opacity 1s;
+    opacity: 1;
+}
+
+.thumb.hide {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .thumb .poster {

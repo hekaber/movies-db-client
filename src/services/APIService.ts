@@ -7,10 +7,6 @@ export class APIService {
     private method: APIMethod = "GET";
     private queryParams: string = '';
 
-    constructor(private authToken: string) {
-        this.headers.push(['Authorization', 'Bearer ' + authToken]);
-    }
-
     public setHeaders(headers: KeyValue<string, string>[]): APIService {
 
         // format KeyValue types to be called in fetch 
