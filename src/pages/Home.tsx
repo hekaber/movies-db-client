@@ -1,7 +1,7 @@
 import React from 'react';
-import { Thumb } from '../../components/Thumb';
-import { MovieDBService } from '../../services/MovieDBService';
-import '../../assets/css/Movies.css';
+import { Thumb } from '../components/Thumb';
+import { MovieDBService } from '../services/MovieDBService';
+import '../assets/css/Movies.css'
 
 interface State {
     isLoaded: boolean;
@@ -9,7 +9,7 @@ interface State {
     error: string;
 }
 
-export class Movies extends React.Component<any, State>  {
+export class Home extends React.Component<any, State>  {
 
     state: Readonly<State> = {
         isLoaded: false,
@@ -58,7 +58,7 @@ export class Movies extends React.Component<any, State>  {
                 );
             });
             return (
-                <div className="movies">
+                <div className="Home">
                     <div><h1>Popular Movies</h1></div>
                     <div className="thumbs_container">
                         {thumbs}
@@ -67,5 +67,4 @@ export class Movies extends React.Component<any, State>  {
             )
         }
     }
-
 }
