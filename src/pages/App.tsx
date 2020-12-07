@@ -23,10 +23,10 @@ export default function App() {
         </header>
         <main>
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/movies">
+            <Route exact path="/movies">
               <Movies />
             </Route>
           </Switch>

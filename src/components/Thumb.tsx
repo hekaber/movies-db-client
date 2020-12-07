@@ -34,17 +34,22 @@ export class Thumb extends React.Component<IThumbProps, State> {
         const classes = shouldFadeOut ? 'thumb' : 'thumb hide';
 
         return (
-
             <div className={classes}>
-                <div className="poster_container">
+                <div className="poster_container inline">
                     <a className="image" href="/">
                         <img className="poster" src={movie.poster_path} alt="poster" />
                     </a>
                 </div>
-                <div>{movie.title}</div>
-                <div>{movie.original_title}</div>
-                <div>{movie.original_language}</div>
-                <div>{movie.overview}</div>
+                <div className="description inline">
+                    <div>
+                        <h3>{movie.title}</h3>
+                        ({movie.original_title}, langue {movie.original_language})
+                    </div>
+                    <div>
+                        <h3>{movie.release_date}</h3>
+                    </div>
+                </div>
+                <div className="summary">{movie.overview}</div>
             </div>
         );
     }

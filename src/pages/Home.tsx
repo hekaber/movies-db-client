@@ -1,7 +1,7 @@
 import React from 'react';
 import { Thumb } from '../components/Thumb';
 import { MovieDBService } from '../services/MovieDBService';
-import '../assets/css/Movies.css'
+import '../assets/css/page.css'
 
 interface State {
     isLoaded: boolean;
@@ -11,15 +11,23 @@ interface State {
 
 export class Home extends React.Component<any, State>  {
 
+    private movieService: MovieDBService;
+
     state: Readonly<State> = {
         isLoaded: false,
         items: [],
         error: ''
     }
 
+    constructor(props: any) {
+
+        super(props);
+        this.movieService = new MovieDBService();
+    }
+
     componentDidMount() {
 
-        new MovieDBService().getPopularMovies('fr-FR', '1', 'FR').then(
+        this.movieService.getPopularMovies('fr-FR', '1', 'FR').then(
             (result) => {
                 if (result.success) {
                     this.setState({
@@ -58,8 +66,8 @@ export class Home extends React.Component<any, State>  {
                 );
             });
             return (
-                <div className="Home">
-                    <div><h1>Popular Movies</h1></div>
+                <div className="Home page">
+                    <div className="title"><h1>Popular Movies</h1></div>
                     <div className="thumbs_container">
                         {thumbs}
                     </div>

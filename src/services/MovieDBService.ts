@@ -60,23 +60,20 @@ export class MovieDBService {
         if (result.success) {
 
             let moviesList: IMovie[] = popularMoviesList.results;
-            popularMoviesList.results = moviesList.map((movie) => { return new MovieResultFormatter().format(movie); })
+            popularMoviesList.results = moviesList.map((movie) => { return formatMovieItem(movie); })
         }
 
         return popularMoviesList;
     }
 }
 
-class MovieResultFormatter {
-
-    public format(item: any): IMovie {
-
-        return {
-            title: item.title,
-            original_title: item.original_title,
-            original_language: item.original_language,
-            overview: item.overview,
-            poster_path: config.MovieDBStaticImageURL + '/w500' + item.poster_path
-        };
-    }
+function formatMovieItem(item: any): IMovie {
+    return {
+        title: item.title,
+        original_title: item.original_title,
+        original_language: item.original_language,
+        overview: item.overview,
+        poster_path: config.MovieDBStaticImageURL + '/w500' + item.poster_path,
+        release_date: item.release_date
+    };
 }

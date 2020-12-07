@@ -58,8 +58,8 @@ export class Movies extends React.Component<any, State>  {
                 );
             });
             return (
-                <div className="Movies">
-                    <div><h1>Movies page</h1></div>
+                <div className="Movies page">
+                    <div className="title"><h1>Movies page</h1></div>
                     <div className="thumbs_container">
                         {thumbs}
                     </div>
