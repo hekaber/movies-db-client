@@ -1,7 +1,7 @@
 import '../assets/css/App.css';
 import { Movies } from './Movies';
 import { Home } from './Home';
-import Navigator from '../components/Navigator';
+import Header from '../components/Header';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 export default function App() {
@@ -9,9 +9,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <header className="App-header">
-          <Navigator />
-        </header>
+        <Header />
         <main>
           <Switch>
             <Route exact path="/">

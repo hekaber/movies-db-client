@@ -24,32 +24,68 @@
     padding: 10px;
 }
 
-.desktop a {
-    color: #FFFFFF;
-}
-
-.desktop a:hover {
-    color: #818198;
-}
-
-button {
+.Navigator .menu-btn {
     background-color: #282c34;
 }
 
-button>svg {
+.App-header a {
+    color: #FFFFFF;
+}
+
+.App-header a:hover {
+    color: #818198;
+}
+
+.App-header .action>svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.App-header .Navigator .menu-btn>svg {
     fill: #FFFFFF;
-    display: inline-block;
-    width: 2em;
-    height: 2em;
-    stroke-width: 0;
-    stroke: #FFFFFF;
+}
+
+.App-header .menu {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+    text-align: left;
+    background-color: #282c34;
+}
+
+.App-header .menu>ul {
+    width: 100%;
+    margin: 1.3em 1em 0 2em;
+}
+
+.App-header .menu>ul>li {
+    height: 3em;
+    line-height: 3em;
+}
+
+.App-header .menu>ul>li:not(:first-child) {
+    border-bottom: solid thin #FFFFFF;
+}
+
+.App-header .menu>ul>li:first-child {
+    text-align: right;
+}
+
+.App-header .menu.active {
+    left: 0;
+    transition: 350ms;
 }
 
 @media only screen and (min-width: 900px) {
     .desktop {
         display: block;
     }
-    .mobile {
+    .menu-btn {
         display: none;
     }
 }
