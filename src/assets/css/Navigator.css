@@ -1,0 +1,55 @@
+.Navigator {
+    width: 95%;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.Navigator,
+.desktop ul {
+    display: flex;
+    align-items: center;
+}
+
+.desktop {
+    display: none;
+    width: 30%;
+}
+
+.desktop ul {
+    justify-content: flex-end;
+}
+
+.desktop ul>li {
+    font-size: 16pt;
+    padding: 10px;
+}
+
+.desktop a {
+    color: #FFFFFF;
+}
+
+.desktop a:hover {
+    color: #818198;
+}
+
+button {
+    background-color: #282c34;
+}
+
+button>svg {
+    fill: #FFFFFF;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    stroke-width: 0;
+    stroke: #FFFFFF;
+}
+
+@media only screen and (min-width: 900px) {
+    .desktop {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
+}

@@ -1,7 +1,8 @@
 import '../assets/css/App.css';
 import { Movies } from './Movies';
 import { Home } from './Home';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import Navigator from '../components/Navigator';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 export default function App() {
 
@@ -9,17 +10,7 @@ export default function App() {
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
-          <h1>Movies</h1>
-          <nav className="App-menu">
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/movies">Movies</Link>
-              </li>
-            </ul>
-          </nav>
+          <Navigator />
         </header>
         <main>
           <Switch>
