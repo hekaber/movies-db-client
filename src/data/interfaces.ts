@@ -6,3 +6,9 @@ export interface IMovie {
     poster_path: string,
     release_date: string
 }
+
+export interface ILink {
+    title: string,
+    path: string,
+    icon: any
+}
