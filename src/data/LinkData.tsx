@@ -6,11 +6,13 @@ export const linkData: ILink[] = [
     {
         title: 'Home',
         path: '/',
-        icon: <AiFillHome />
+        icon: <AiFillHome />,
+        cName: ""
     },
     {
         title: 'Movies',
         path: '/movies',
-        icon: <MdMovie />
+        icon: <MdMovie />,
+        cName: ""
     }
 ]

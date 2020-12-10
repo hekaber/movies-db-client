@@ -10,5 +10,6 @@ export interface IMovie {
 export interface ILink {
     title: string,
     path: string,
-    icon: any
+    icon: any,
+    cName: string
 }

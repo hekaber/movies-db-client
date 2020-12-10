@@ -1,47 +1,31 @@
-import '../assets/css/Navigator.css';
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaWindowClose } from 'react-icons/fa';
 import { linkData } from '../data/LinkData';
+import { Nav, Navbar } from 'react-bootstrap';
+
 
 export default function Header() {
 
-    const [sidebar, setSideBar] = useState(false);
-    const showSideBar = () => setSideBar(!sidebar)
     const links = linkData.map((item, index) => {
         return (
-            <li key={index}>
-                <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                </Link>
-            </li>
+            <Nav.Link as={Link} to={item.path} key={index}>
+                {item.icon}
+                <span>{item.title}</span>
+            </Nav.Link>
         );
     });
 
     return (
-        <header className="App-header">
-            <div className="Navigator">
-                <h1>Movies</h1>
-                <nav className="desktop">
-                    <ul>
-                        {links}
-                    </ul>
-                </nav>
-                <Link to="#" className="menu-btn action">
-                    <FaBars onClick={showSideBar} />
-                </Link>
-            </div>
-            <div className={sidebar ? 'menu active' : 'menu'}>
-                <ul>
-                    <li>
-                        <Link to="#" className="close action" onClick={showSideBar}>
-                            <FaWindowClose />
-                        </Link>
-                    </li>
+
+        // Based on https://getbootstrap.com/docs/5.0/examples/starter-template/# example
+        // using react-bootstrap
+        <Navbar bg="dark" expand="lg"  className="navbar-dark fixed-top">
+            <Navbar.Brand href="#">Movies App</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto mb-2 mb-md-0">
                     {links}
-                </ul>
-            </div>
-        </header>
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
     );
 }
