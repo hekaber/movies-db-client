@@ -1,7 +1,10 @@
 import React from 'react';
 import { Thumb } from '../components/Thumb';
 import { MovieDBService } from '../services/MovieDBService';
-import '../assets/css/page.css'
+import '../assets/css/page.css';
+import '../assets/css/Home.css';
+import { ICarouselItem } from '../data/interfaces';
+import ItemsCarousel from '../components/ItemsCarousel';
 
 interface State {
     isLoaded: boolean;
@@ -42,6 +45,12 @@ export class Home extends React.Component<any, State>  {
                 }
             }
         );
+
+        this.movieService.getAPIConfig().then(
+            (result) => {
+                console.log(result)
+            }
+        );
     }
 
     render() {
@@ -55,6 +64,11 @@ export class Home extends React.Component<any, State>  {
         else {
 
             const movies = this.state.items;
+            const carouselItems: ICarouselItem[] = movies
+                .slice(0, 4)
+                .map((movie) => {
+                    return { title: movie.title, imagePath: movie.backdrop_path, content: movie.overview } as ICarouselItem
+                });
             const thumbs = movies.map((movie, index) => {
 
                 return (
@@ -67,6 +81,9 @@ export class Home extends React.Component<any, State>  {
             });
             return (
                 <div className="Home page">
+                    <ItemsCarousel
+                        items={carouselItems}
+                    />
                     <div className="title"><h1>Popular Movies</h1></div>
                     <div className="thumbs_container">
                         {thumbs}

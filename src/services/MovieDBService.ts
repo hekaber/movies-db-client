@@ -5,7 +5,8 @@ import { ListResponse } from "../data/types";
 
 enum Enpoints {
     POPULAR_MOVIES = '/movie/popular',
-    UPCOMING_MOVIES = '/movie/upcoming'
+    UPCOMING_MOVIES = '/movie/upcoming',
+    CONFIG = '/configuration'
 }
 
 export class MovieDBService {
@@ -36,6 +37,13 @@ export class MovieDBService {
         return this.getMovies(Enpoints.UPCOMING_MOVIES, language, page, region);
     }
 
+    public async getAPIConfig() {
+
+        this.api.resetParams();
+        let result = await this.api.send(config.MovieDBBaseURL + Enpoints.CONFIG);
+
+        return result;
+    }
     private async getMovies(endpoint: string, language: string, page: string, region: string): Promise<ListResponse<IMovie>> {
         
         this.api.resetParams();
@@ -73,7 +81,8 @@ function formatMovieItem(item: any): IMovie {
         original_title: item.original_title,
         original_language: item.original_language,
         overview: item.overview,
-        poster_path: config.MovieDBStaticImageURL + '/w500' + item.poster_path,
-        release_date: item.release_date
+        poster_path: config.MovieDBStaticImageURL + '/original' + item.poster_path,
+        release_date: item.release_date,
+        backdrop_path: item.backdrop_path ? config.MovieDBStaticImageURL + '/original' + item.backdrop_path : ''
     };
 }
