@@ -81,7 +81,7 @@ function formatMovieItem(item: any): IMovie {
         original_title: item.original_title,
         original_language: item.original_language,
         overview: item.overview,
-        poster_path: config.MovieDBStaticImageURL + '/w154' + item.poster_path,
+        poster_path: item.poster_path ? config.MovieDBStaticImageURL + '/w154' + item.poster_path : '',
         release_date: item.release_date,
         backdrop_path: item.backdrop_path ? config.MovieDBStaticImageURL + '/original' + item.backdrop_path : ''
     };

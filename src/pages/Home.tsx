@@ -10,6 +10,9 @@ interface State {
     popularMoviesLoaded: boolean;
     popularMoviesData: any[];
     popularMoviesError: string;
+    upComingMoviesLoaded: boolean;
+    upComingMoviesData: any[];
+    upcomingMoviesError: string;
 }
 
 export class Home extends React.Component<any, State>  {
@@ -19,7 +22,10 @@ export class Home extends React.Component<any, State>  {
     state: Readonly<State> = {
         popularMoviesLoaded: false,
         popularMoviesData: [],
-        popularMoviesError: ''
+        popularMoviesError: '',
+        upComingMoviesLoaded: false,
+        upComingMoviesData: [],
+        upcomingMoviesError: ''
     }
 
     constructor(props: any) {
@@ -46,12 +52,29 @@ export class Home extends React.Component<any, State>  {
                 }
             }
         );
+
+        this.movieService.getUpcomingMovies('fr-FR', '1', 'FR').then(
+            (result) => {
+                if (result.success) {
+                    this.setState({
+                        upComingMoviesLoaded: true,
+                        upComingMoviesData: result.results
+                    });
+                }
+                else {
+                    this.setState({
+                        popularMoviesLoaded: false,
+                        upcomingMoviesError: 'error'
+                    });
+                }
+            }
+        );
     }
 
     render() {
 
-        const movies = this.state.popularMoviesData;
-        const carouselItems: ICarouselItem[] = movies
+        const popularMovies = this.state.popularMoviesData;
+        const carouselItems: ICarouselItem[] = popularMovies
             .slice(0, 4)
             .map((movie) => {
                 return { title: movie.title, imagePath: movie.backdrop_path, content: movie.overview } as ICarouselItem
@@ -65,7 +88,12 @@ export class Home extends React.Component<any, State>  {
                 <div className="title"><h1>Popular Movies</h1></div>
                 <ThumbList
                     loaded={this.state.popularMoviesLoaded}
-                    thumbs={movies}
+                    thumbs={popularMovies}
+                />
+                <div className="title"><h1>Upcoming Movies</h1></div>
+                <ThumbList
+                    loaded={this.state.upComingMoviesLoaded}
+                    thumbs={this.state.upComingMoviesData}
                 />
             </div>
         )
