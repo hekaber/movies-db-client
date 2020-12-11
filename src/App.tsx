@@ -10,16 +10,14 @@ export default function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
-        <main>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/movies">
-              <Movies />
-            </Route>
-          </Switch>
-        </main>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/movies">
+            <Movies />
+          </Route>
+        </Switch>
       </div>
     </BrowserRouter>
   );

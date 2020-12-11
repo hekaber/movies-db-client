@@ -1,0 +1,39 @@
+html,
+body {
+    height: 100%;
+}
+
+.custom_carousel_item .carousel,
+.custom_carousel_item .item,
+.custom_carousel_item .active,
+.custom_carousel_item .container-fluid,
+.custom_carousel_item.carousel-item {
+    height: 100%;
+}
+
+.custom_carousel_item .container-fluid {
+    padding: 0;
+}
+
+.carousel-inner {
+    height: 60vh;
+}
+
+.carousel_bck {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel_bck::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.50);
+}
