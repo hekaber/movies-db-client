@@ -4,6 +4,7 @@ export interface ICarouselItem {
     imagePath: string,
     itemLink: string
 }
+
 export interface IMovie {
     title: string,
     original_title: string,

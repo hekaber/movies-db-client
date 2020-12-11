@@ -1,5 +1,5 @@
 import React from 'react';
-import { Thumb } from '../components/Thumb';
+import Thumb from '../components/Thumb';
 import { MovieDBService } from '../services/MovieDBService';
 import '../assets/css/Movies.css'
 
@@ -53,7 +53,6 @@ export class Movies extends React.Component<any, State>  {
                     <Thumb
                         key={index}
                         movie={movie}
-                        delayTime={index * 500}
                     />
                 );
             });
