@@ -1,0 +1,17 @@
+.thumbs_container {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.thumbs_container>div {
+    flex-basis: 12%;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+.thumbs_view {
+    width: 100%;
+    overflow-y: hidden;
+    padding: 1em;
+}

@@ -2,8 +2,9 @@ import './assets/css/App.css';
 import { Movies } from './pages/Movies';
 import { Home } from './pages/Home';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { MovieDBService } from './services/MovieDBService';
+// import { MovieDBService } from './services/MovieDBService';
 
 export default function App() {
 
@@ -26,6 +27,7 @@ export default function App() {
             <Movies />
           </Route>
         </Switch>
+        <Footer/>
       </div>
     </BrowserRouter>
   );

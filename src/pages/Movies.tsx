@@ -1,7 +1,7 @@
 import React from 'react';
 import Thumb from '../components/Thumb';
 import { MovieDBService } from '../services/MovieDBService';
-import '../assets/css/Movies.css'
+import '../assets/css/ThumbsList.css'
 
 interface State {
     isLoaded: boolean;
