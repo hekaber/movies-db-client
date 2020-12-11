@@ -17,21 +17,9 @@ const ItemsCarousel = (props: ICarouselProps) => {
             <Carousel.Item key={index} className="custom_carousel_item">
                 <Container fluid>
                     <div className="carousel_bck" style={bcgStyle}></div>
-                    {/* <img
-                        className='carousel_thumb mx-auto d-block w-100'
-                        src={item.imagePath}
-                        alt={`slide ${index}`}
-                    /> */}
                     <Carousel.Caption className="text-left">
-                        <div className="row">
-                            <div className="col-2">
-
-                            </div>
-                            <div className="col-10">
-                                <h3>{item.title}</h3>
-                                <p>{item.content}</p>
-                            </div>
-                        </div>
+                        <h3>{item.title}</h3>
+                        <p>{item.content}</p>
                     </Carousel.Caption>
                 </Container>
             </Carousel.Item>
