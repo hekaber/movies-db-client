@@ -4,7 +4,7 @@ import '../assets/css/page.css';
 import '../assets/css/Home.css';
 import { ICarouselItem } from '../data/interfaces';
 import ItemsCarousel from '../components/ItemsCarousel';
-import { ThumbList } from '../components/ThumbList';
+import ThumbList from '../components/ThumbList';
 
 interface State {
     popularMoviesLoaded: boolean;
@@ -88,12 +88,12 @@ export class Home extends React.Component<any, State>  {
                 <div className="title"><h1>Popular Movies</h1></div>
                 <ThumbList
                     loaded={this.state.popularMoviesLoaded}
-                    thumbs={popularMovies}
+                    movies={popularMovies}
                 />
                 <div className="title"><h1>Upcoming Movies</h1></div>
                 <ThumbList
                     loaded={this.state.upComingMoviesLoaded}
-                    thumbs={this.state.upComingMoviesData}
+                    movies={this.state.upComingMoviesData}
                 />
             </div>
         )

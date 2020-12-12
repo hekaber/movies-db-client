@@ -1,44 +1,45 @@
 import React from 'react'
 import Thumb from './Thumb'
+import { thumbDefault } from '../data/confdata';
 
-interface State {
-    isLoaded: boolean;
-    error: string
-}
 
-export class ThumbList extends React.Component<any, State> {
+const ThumbList = (props: any) => {
 
-    state: Readonly<State> = {
-        isLoaded: false,
-        error: ''
-    }
+    const { movies, loaded } = props;
+    let thumbs = [];
 
-    render() {
+    if (movies && movies.length) {
+        thumbs = movies.map((movie: any, index: number) => {
 
-        if (!this.props.loaded) {
-            return (<div className="thumbs_container">Loading...</div>)
-        }
-        else {
-
-            const { thumbs: movies } = this.props;
-            const thumbs = movies.map((movie: any, index: number) => {
-
-                return (
-                    <Thumb
-                        key={index}
-                        movie={movie}
-                    />
-                );
-            });
             return (
-                <React.Fragment>
-                    <div className="thumbs_view">
-                        <div className="thumbs_container">
-                            {thumbs}
-                        </div>
-                    </div>
-                </React.Fragment>
-            )
+                <Thumb
+                    key={index}
+                    movie={movie}
+                />
+            );
+        });
+    }
+    else {
+        for(let i=0; i < 20; i++) {
+            thumbs.push(
+                <Thumb
+                    key={i}
+                    movie={null}
+                />
+            );
         }
     }
+    console.log(thumbs);
+
+    return (
+        <React.Fragment>
+            <div className="thumbs_view">
+                <div className="thumbs_container">
+                    {thumbs}
+                </div>
+            </div>
+        </React.Fragment>
+    );
 }
+
+export default ThumbList;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { linkData } from '../data/LinkData';
+import { linkData } from '../data/confdata';
 import { Nav, Navbar } from 'react-bootstrap';
 
 
