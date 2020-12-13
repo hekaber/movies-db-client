@@ -7,10 +7,8 @@ import ItemsCarousel from '../components/ItemsCarousel';
 import ThumbList from '../components/ThumbList';
 
 interface State {
-    popularMoviesLoaded: boolean;
     popularMoviesData: any[];
     popularMoviesError: string;
-    upComingMoviesLoaded: boolean;
     upComingMoviesData: any[];
     upcomingMoviesError: string;
 }
@@ -20,10 +18,8 @@ export class Home extends React.Component<any, State>  {
     private movieService: MovieDBService;
 
     state: Readonly<State> = {
-        popularMoviesLoaded: false,
         popularMoviesData: [],
         popularMoviesError: '',
-        upComingMoviesLoaded: false,
         upComingMoviesData: [],
         upcomingMoviesError: ''
     }
@@ -35,40 +31,58 @@ export class Home extends React.Component<any, State>  {
     }
 
     componentDidMount() {
-
         this.movieService.getPopularMovies('fr-FR', '1', 'FR').then(
             (result) => {
                 if (result.success) {
                     this.setState({
-                        popularMoviesLoaded: true,
                         popularMoviesData: result.results
                     });
                 }
                 else {
                     this.setState({
-                        popularMoviesLoaded: false,
                         popularMoviesError: 'error'
                     });
                 }
             }
         );
 
-        this.movieService.getUpcomingMovies('fr-FR', '1', 'FR').then(
-            (result) => {
-                if (result.success) {
-                    this.setState({
-                        upComingMoviesLoaded: true,
-                        upComingMoviesData: result.results
-                    });
+    }
+
+    loadMovies = (movieType: string) => {
+
+        if (movieType === 'popular') {
+            this.movieService.getPopularMovies('fr-FR', '1', 'FR').then(
+                (result) => {
+                    if (result.success) {
+                        this.setState({
+                            popularMoviesData: result.results
+                        });
+                    }
+                    else {
+                        this.setState({
+                            popularMoviesError: 'error'
+                        });
+                    }
                 }
-                else {
-                    this.setState({
-                        popularMoviesLoaded: false,
-                        upcomingMoviesError: 'error'
-                    });
+            );
+        }
+        else {
+            this.movieService.getUpcomingMovies('fr-FR', '1', 'FR').then(
+                (result) => {
+                    if (result.success) {
+                        this.setState({
+                            upComingMoviesData: result.results
+                        });
+                    }
+                    else {
+                        this.setState({
+                            upcomingMoviesError: 'error'
+                        });
+                    }
                 }
-            }
-        );
+            );
+        }
+
     }
 
     render() {
@@ -87,13 +101,15 @@ export class Home extends React.Component<any, State>  {
                 />
                 <div className="title"><h1>Popular Movies</h1></div>
                 <ThumbList
-                    loaded={this.state.popularMoviesLoaded}
+                    name='popular'
                     movies={popularMovies}
+                    onActive={this.loadMovies}
                 />
                 <div className="title"><h1>Upcoming Movies</h1></div>
                 <ThumbList
-                    loaded={this.state.upComingMoviesLoaded}
+                    name='upcoming'
                     movies={this.state.upComingMoviesData}
+                    onActive={this.loadMovies}
                 />
             </div>
         )
