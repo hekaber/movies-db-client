@@ -23,9 +23,7 @@ export default function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/movies">
-            <Movies />
-          </Route>
+          <Route path="/movies/:category" component={Movies} />
         </Switch>
         <Footer/>
       </div>

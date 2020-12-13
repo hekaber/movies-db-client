@@ -77,6 +77,7 @@ export class MovieDBService {
 
 function formatMovieItem(item: any): IMovie {
     return {
+        id: parseInt(item.id),
         title: item.title,
         original_title: item.original_title,
         original_language: item.original_language,
