@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Thumb from './Thumb'
 import { useState } from 'react';
 
 
 const ThumbList = (props: any) => {
 
-    const { movies, name } = props;
+    const { movies, name, onActive } = props;
     let thumbs = [];
     const [active, setstate] = useState(false);
     const thumbRef = React.createRef<HTMLDivElement>();
@@ -26,9 +26,10 @@ const ThumbList = (props: any) => {
         window.addEventListener('scroll', handleScroll);
 
         if (active) {
-            props.onActive(name);
+            onActive(name);
         }
         return () => { window.removeEventListener('scroll', handleScroll)}
+        // eslint-disable-next-line
     }, [active]);
 
     if (movies && movies.length) {
